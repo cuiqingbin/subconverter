@@ -2230,6 +2230,10 @@ void explodeStdVLESS(std::string vless, Proxy &node) {
         remarks = add + ":" + port;
     node.TLSSecure = security == "tls" || security == "reality";
     vlessConstruct(node, VLESS_DEFAULT_GROUP, remarks, add, port, uuid, sni, alpn, type, net, mode, host, path, fingerprint, flow, xtls, public_key, short_id, "", tribool(), tfo, scv, "");
+    std::string vless_encryption = getUrlArg(addition, "encryption");
+    if (!vless_encryption.empty()) {
+        node.VlessEncryption = vless_encryption;
+    }
 }
 
 void explodeVLESS(std::string vless, Proxy &node) {
