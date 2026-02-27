@@ -712,6 +712,12 @@ void proxyToClash(std::vector<Proxy> &nodes, YAML::Node &yamlnode, const ProxyGr
             }
             if (!scv.is_undef())
                 singleproxy["skip-cert-verify"] = scv.get();
+            // FIX: add encryption field
+            if (!x.VlessEncryption.empty()) {
+                singleproxy["encryption"] = x.VlessEncryption;
+            } else {
+                singleproxy["encryption"] = "none";  // VLESS 默认无加密
+            }
             break;
         default:
             continue;
